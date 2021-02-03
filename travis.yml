@@ -24,4 +24,4 @@ deploy:
   script:
     docker push joffreybvn/resa-chatbot-frontend:latest;
   on:
-    branch: master
+    branch: frontend
