@@ -3,12 +3,14 @@
 import requests
 from os import environ
 from flask import Flask
+from flask_cors import CORS
 
 # Get environment variables
 PORT = int(environ.get("PORT", 3000))
 SECRET_KEY = environ.get("MS_KEY_SECRET", "")
 
 api = Flask(__name__)
+CORS(api)  # Allow request from any origin
 
 
 @api.route("/token")
