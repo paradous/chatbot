@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script
+      crossorigin="anonymous"
+      src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"
+    ></script>
+    <style>
+      html,
+      body {
+         height: 100%;
+      }
+
+      body {
+        margin: 0;
+      }
+
+      #webchat {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="webchat" role="main"></div>
+    <script>
+      window.WebChat.renderWebChat(
+        {
+          directLine: window.WebChat.createDirectLine({
+            token: 'ew0KICAiYWxnIjogIlJTMjU2IiwNCiAgImtpZCI6ICJsY0oxTXFpNkdKYXdCZEw5Y0dieEt5S1R6OE0iLA0KICAieDV0IjogImxjSjFNcWk2R0phd0JkTDljR2J4S3lLVHo4TSIsDQogICJ0eXAiOiAiSldUIg0KfQ.ew0KICAiYm90IjogInJlc2FjaGF0Ym90IiwNCiAgInNpdGUiOiAiQ3EzMDAtNHE0Vm8iLA0KICAiY29udiI6ICI5VkVkakRpUTREcEg5UHZkNFRtVE02LW0iLA0KICAibmJmIjogMTYxMjM4OTQyMiwNCiAgImV4cCI6IDE2MTIzOTMwMjIsDQogICJpc3MiOiAiaHR0cHM6Ly9kaXJlY3RsaW5lLmJvdGZyYW1ld29yay5jb20vIiwNCiAgImF1ZCI6ICJodHRwczovL2RpcmVjdGxpbmUuYm90ZnJhbWV3b3JrLmNvbS8iDQp9.oRsiULm-qRT3YnbKD2Gbl9e7rk70S8UUdRyIcMyQ5eIJ8vngKm015PR-2URSPwXb83EL0oZU4UMn--qaQx_sm9xY-r9MSeej3k5_69ClIwBu0TNi7c0rVI4N9PT7JIROPcIRm3fPHQrG1ole6VVMpyqIL5u5C5rOV7fkHBOvZS_YLwBGfOxHMwKVhfNlHmJSrzczzfz0DkIs4oWuJXEZkjZpdcdcXufjIS61ET7d4Gs7MPSUkyCpZX06Ju24DzWImTQpPeBtaQ1xHs9RTqN7qbUhswIaoUQJL37DCE6mPw0qT5f00e3toO4XgZXm2uxrxGStiAQo0djNY_lWU93Brw'
+          }),
+          userID: 'YOUR_USER_ID',
+          username: 'Visitor',
+          locale: 'en-US'
+        },
+        document.getElementById('webchat')
+      );
+    </script>
+  </body>
+</html>
