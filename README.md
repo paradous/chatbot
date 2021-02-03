@@ -72,8 +72,3 @@
 
 
 ## Hébergement du Bot
-
-
-# Timeline:
-1. Trouver ou/comment héberger le produit final
-2. Créer un dataset
