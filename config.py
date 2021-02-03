@@ -6,8 +6,8 @@ class Config:
     """Bot configuration class."""
 
     # Deployment
-    PORT = 3978
+    PORT = int(environ.get("PORT", 3978))
 
     # Azure deployment
-    APP_ID = environ.get("MicrosoftAppId", "")
-    APP_PASSWORD = environ.get("MicrosoftAppPassword", "")
+    APP_ID = environ.get("MS_APP_ID", "")
+    APP_PASSWORD = environ.get("MS_APP_PASSWORD", "")
