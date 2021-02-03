@@ -1,4 +1,5 @@
 
+# https://docs.microsoft.com/en-us/azure/bot-service/rest-api/bot-framework-rest-direct-line-3-0-authentication?view=azure-bot-service-4.0
 import requests
 from os import environ
 from flask import Flask
