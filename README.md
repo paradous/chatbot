@@ -72,3 +72,9 @@
 
 
 ## Hébergement du Bot
+
+Timeline:
+- Etablir l'objectif (déployer bot cross-plateforme + créer propre modele)
+- Trouver un framework >> MSBotFramework
+- Créer un dataset 
+- Deployer dummy bot
