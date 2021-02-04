@@ -1,3 +1,4 @@
+
 FROM python:3.8-slim-buster
 
 # Install the security updates.
@@ -8,7 +9,7 @@ RUN apt-get -y upgrade
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
-EXPOSE 3978
+EXPOSE 3000
 
 # Copy the application.
 COPY . /opt/app
