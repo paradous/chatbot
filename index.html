@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+    <link rel="stylesheet" href="./assets/css/styles.css">
+
+    <title>Resa Chatbot</title>
+    <meta name="description" content="A simple chatbot written in Python, based on BERT">
+    <meta name="author" content="Joffrey Bienvenu, Vincent Leurs">
+</head>
+
+<body>
+<div id="webchat" role="main"></div>
+<script>
+
+    // Fetch the token API
+    fetch('https://resa-front-api.joffreybvn.be/token')
+
+        .then((response) => {
+            return response.json()
+        })
+        .then((content) => {
+
+            // Launch the client when a token is received
+            if (content['status']) {
+                window.WebChat.renderWebChat(
+                    {
+                        directLine: window.WebChat.createDirectLine({
+                            token: content['token']
+                        }),
+                        userID: 'YOUR_USER_ID',
+                        username: 'Visitor',
+                        locale: 'en-US'
+                    },
+                    document.getElementById('webchat')
+                );
+            }
+        })
+</script>
+</body>
+</html>
