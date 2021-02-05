@@ -5,7 +5,7 @@ RUN apt-get update
 RUN apt-get -y upgrade
 
 # Dependencies to build requires packages
-RUN sudo apt-get install gcc
+RUN apt-get install gcc
 
 # Remove all cached file. Get a smaller image.
 RUN apt-get clean
