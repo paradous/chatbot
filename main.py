@@ -10,7 +10,7 @@ from botbuilder.core import BotFrameworkAdapterSettings, TurnContext, BotFramewo
 from botbuilder.core.integration import aiohttp_error_middleware
 from botbuilder.schema import Activity, ActivityTypes
 
-from bot import Bot
+from src import Bot
 from config import Config
 
 # Load the config and create the bot
@@ -90,3 +90,10 @@ app.router.add_post("/api/messages", messages)
 
 if __name__ == "__main__":
     web.run_app(app, host="0.0.0.0", port=config.PORT)
+
+    """
+    from src.matching import Matcher
+    matcher = Matcher()
+    result = matcher.get_keywords("I wish to reserve a room for 2 peoples", "longtalk_hotel_reserve")
+    print(result)
+    """
