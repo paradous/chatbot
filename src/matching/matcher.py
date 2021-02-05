@@ -56,32 +56,35 @@ class Matcher:
         return filters
 
     def get_keywords(self, text: str, intent: str) -> dict:
+
         keywords = {}
 
-        # Split the text into a list of words
-        entries = text.split(" ")
+        if intent in self.filters:
 
-        for filter_ in self.filters[intent]:
+            # Split the text into a list of words
+            entries = text.split(" ")
 
-            # Math similarities between the filter and the given text
-            self.model.match(entries, filter_.words)
-            matches: pd.DataFrame = self.model.get_matches()
+            for filter_ in self.filters[intent]:
 
-            try:
-                # Get the word with the maximum similarity
-                thresholds = matches[matches['Similarity'] >= filter_.threshold]
-                keyword = thresholds[thresholds['Similarity'] == thresholds['Similarity'].max()].iloc[0, 0]
+                # Math similarities between the filter and the given text
+                self.model.match(entries, filter_.words)
+                matches: pd.DataFrame = self.model.get_matches()
 
-            except Exception:
-                # If there's no match, set the filter as None
-                keywords[filter_.name] = None
+                try:
+                    # Get the word with the maximum similarity
+                    thresholds = matches[matches['Similarity'] >= filter_.threshold]
+                    keyword = thresholds[thresholds['Similarity'] == thresholds['Similarity'].max()].iloc[0, 0]
 
-            else:
-                # Use the keyword to retrieve and save its chained-data
-                if result := re.search(filter_.regex % keyword, text):
-                    keywords[filter_.name] = result.group(filter_.name)
+                except Exception:
+                    # If there's no match, set the filter as None
+                    keywords[filter_.name] = None
 
                 else:
-                    keywords[filter_.name] = None
+                    # Use the keyword to retrieve and save its chained-data
+                    if result := re.search(filter_.regex % keyword, text):
+                        keywords[filter_.name] = result.group(filter_.name)
+
+                    else:
+                        keywords[filter_.name] = None
 
         return keywords
