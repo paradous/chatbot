@@ -90,11 +90,18 @@ app.router.add_post("/api/messages", messages)
 
 if __name__ == "__main__":
 
-    web.run_app(app, host="0.0.0.0", port=config.PORT)
+    # web.run_app(app, host="0.0.0.0", port=config.PORT)
 
-    """
     from src.matching import Matcher
+    from src.preprocessing import Preprocessor
+
     matcher = Matcher()
-    result = matcher.get_keywords("I wish to reserve a room for 2 peoples", "longtalk_hotel_reserve")
+    preprocessor = Preprocessor()
+
+    text = "I wish to reserve a room for 2 peoples for 4 days"
+    cleaned_text = preprocessor.preprocess(text)
+    print(cleaned_text)
+
+    result = matcher.get_keywords(cleaned_text, "longtalk_hotel_reserve")
     print(result)
-    """
+

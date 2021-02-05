@@ -11,6 +11,6 @@
     # Duration of the book: How long ?
     [longtalk_hotel_reserve.duration]
     words = ["day"]
-    regex = '''(?P<day>\d)\W%s'''
+    regex = '''(?P<duration>\d)\W%s'''
     threshold = 0.85
 
