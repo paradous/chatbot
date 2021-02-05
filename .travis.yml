@@ -17,11 +17,11 @@ before_script:
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
 
 script:
-  - docker build -t paradous/resa-chatbot:latest .
+  - docker build -t joffreybvn/resa-chatbot:latest .
 
 deploy:
   provider: script
   script:
-    docker push paradous/resa-chatbot:latest;
+    docker push joffreybvn/resa-chatbot:latest;
   on:
     branch: master

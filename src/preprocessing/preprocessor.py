@@ -78,4 +78,4 @@ class Preprocessor:
             else:
                 clean_text.append(token)
 
-        return " ".join(str(clean_text))
+        return ' '.join(map(str, clean_text))

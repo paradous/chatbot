@@ -13,7 +13,13 @@ Unidecode==1.1.2
 word2number==1.1
 contractions==0.0.45
 
+# Classification
+transformers==4.2.2
+torch==1.7.1
+requests==2.23.0
+
 # Matching
 polyfuzz==0.2.2
 toml==0.10.2
 pandas==1.2.1
+
