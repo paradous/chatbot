@@ -20,7 +20,7 @@ class Classifier:
         self.labels = self._load_labels()
 
         # Download the model and instantiate it
-        # self._download_model()
+        self._download_model()
         self.model = self._load_model()
 
     @staticmethod
