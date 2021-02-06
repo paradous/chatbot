@@ -18,14 +18,14 @@ class Config:
     MODEL_CLASSIFIER = "bert-base-uncased"  # HuggingFace smallest BERT model - For tokenization and classifying
 
     # Remote files
-    b2_base_url = "https://static.joffreybvn.be/file/joffreybvn/resachatbot"
+    s3_base_url = environ.get("S3_BASE_URL", ""),
 
     weight_file = "resa_BERT_model.pt"
-    MODEL_WEIGHT_URL = f"{b2_base_url}/{weight_file}"  # Fine-tuned weights for BERT model
+    MODEL_WEIGHT_URL = f"{s3_base_url}/{weight_file}"  # Fine-tuned weights for BERT model
     MODEL_WEIGHT_LOCAL_COPY = f"./assets/model/{weight_file}"
 
     classes_file = "labels.pickle"
-    MODEL_CLASSES_URL = f"{b2_base_url}/{classes_file}"
+    MODEL_CLASSES_URL = f"{s3_base_url}/{classes_file}"
     MODEL_CLASSES_LOCAL_COPY = f"./assets/model/{classes_file}"
 
     # Filters
