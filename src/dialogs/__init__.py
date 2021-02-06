@@ -1,4 +1,5 @@
 
-from .example import Example
+from .dialogs_helper import DialogHelper
+from .example import UserProfileDialog
 
-__all__ = ["Example"]
+__all__ = ["DialogHelper", "UserProfileDialog"]
