@@ -2,7 +2,7 @@
 from botbuilder.core import ActivityHandler, TurnContext, ConversationState, UserState
 from botbuilder.dialogs import Dialog
 
-from .dialogs import DialogHelper
+from .dialogs.helpers import DialogHelper
 from .nlu import NLU
 
 nlu = NLU()

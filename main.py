@@ -10,7 +10,7 @@ from botbuilder.core import BotFrameworkAdapterSettings, TurnContext, BotFramewo
 from botbuilder.core.integration import aiohttp_error_middleware
 from botbuilder.schema import Activity, ActivityTypes
 
-from src.dialogs import UserProfileDialog
+from src.dialogs import RoomReservationDialog
 from src import Bot
 from config import Config
 
@@ -64,7 +64,7 @@ CONVERSATION_STATE = ConversationState(MEMORY)
 USER_STATE = UserState(MEMORY)
 
 # Create main dialog and bot
-DIALOG = UserProfileDialog(USER_STATE)
+DIALOG = RoomReservationDialog(USER_STATE)
 bot = Bot(CONVERSATION_STATE, USER_STATE, DIALOG)
 
 

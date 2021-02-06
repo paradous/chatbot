@@ -4,16 +4,16 @@ from botbuilder.dialogs.prompts import TextPrompt, NumberPrompt, ChoicePrompt, C
 from botbuilder.dialogs.choices import Choice
 from botbuilder.core import MessageFactory, UserState
 
-from .data_models import UserProfile
+from .data_models import RoomReservation
 
 
-class UserProfileDialog(ComponentDialog):
+class RoomReservationDialog(ComponentDialog):
 
     def __init__(self, user_state: UserState):
-        super(UserProfileDialog, self).__init__(UserProfileDialog.__name__)
+        super(RoomReservationDialog, self).__init__(RoomReservationDialog.__name__)
 
         # Load the UserProfile class
-        self.user_profile_accessor = user_state.create_property("UserProfile")
+        self.room_reservation_accessor = user_state.create_property("RoomReservation")
 
         # Setup the waterfall dialog
         self.add_dialog(WaterfallDialog(WaterfallDialog.__name__, [
@@ -50,14 +50,14 @@ class UserProfileDialog(ComponentDialog):
     async def nights_step(step_context: WaterfallStepContext) -> DialogTurnResult:
 
         # Save the number of people
-        step_context.values["peoples"] = step_context.result.value
+        step_context.values["people"] = step_context.result.value
 
         # Confirm the number of people
         await step_context.context.send_activity(
             MessageFactory.text(f"Okay, for {step_context.result.value}")
         )
 
-        # NumberPrompt - How many nights ?
+        # NumberPrompt - How many nights ? (duration)
         return await step_context.prompt(
             NumberPrompt.__name__,
             PromptOptions(
@@ -69,7 +69,7 @@ class UserProfileDialog(ComponentDialog):
     async def breakfast_step(step_context: WaterfallStepContext) -> DialogTurnResult:
 
         # Save the number of nights
-        step_context.values["nights"] = step_context.result
+        step_context.values["duration"] = step_context.result
 
         # ConfirmPrompt - Is taking breakfast ?
         return await step_context.prompt(
@@ -81,7 +81,10 @@ class UserProfileDialog(ComponentDialog):
 
     async def summary_step(self, step_context: WaterfallStepContext) -> DialogTurnResult:
 
-        # If the user said True:
+        # Save if the user take the breakfast (bool)
+        step_context.values["breakfast"] = step_context.result
+
+        # If the user said "Yes":
         if step_context.result:
 
             # Confirm breakfast hour
@@ -90,16 +93,13 @@ class UserProfileDialog(ComponentDialog):
             )
 
         # Save information to Reservation object
-        user_profile = await self.user_profile_accessor.get(
-            step_context.context, UserProfile
+        room_reservation = await self.room_reservation_accessor.get(
+            step_context.context, RoomReservation
         )
 
-        """
-        user_profile.transport = step_context.values["transport"]
-        user_profile.name = step_context.values["name"]
-        user_profile.age = step_context.values["age"]
-        user_profile.picture = step_context.values["picture"]
-        """
+        room_reservation.people = step_context.values["people"]
+        room_reservation.duration = step_context.values["duration"]
+        room_reservation.breakfast = step_context.values["breakfast"]
 
         # End the dialog
         await step_context.context.send_activity(

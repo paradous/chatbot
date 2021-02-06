@@ -1,4 +1,4 @@
 
-from .user_profile import UserProfile
+from .room_reservation import RoomReservation
 
-__all__ = ["UserProfile"]
+__all__ = ["RoomReservation"]

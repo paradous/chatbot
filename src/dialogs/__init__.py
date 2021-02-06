@@ -1,5 +1,4 @@
 
-from .dialogs_helper import DialogHelper
-from .example import UserProfileDialog
+from .room_reservation_dialog import RoomReservationDialog
 
-__all__ = ["DialogHelper", "UserProfileDialog"]
+__all__ = ["RoomReservationDialog"]
