@@ -18,7 +18,7 @@ class Config:
     MODEL_CLASSIFIER = "bert-base-uncased"  # HuggingFace smallest BERT model - For tokenization and classifying
 
     # Remote files
-    s3_base_url = environ.get("S3_BASE_URL", ""),
+    s3_base_url = environ.get("S3_BASE_URL", "")
 
     weight_file = "resa_BERT_model.pt"
     MODEL_WEIGHT_URL = f"{s3_base_url}/{weight_file}"  # Fine-tuned weights for BERT model
