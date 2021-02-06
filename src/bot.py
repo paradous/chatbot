@@ -33,12 +33,15 @@ class Bot(ActivityHandler):
         dataset = tokenizer.get_dataset(preprocessed_text)
 
         # Get the intention
-        intent = classifier.predict(dataset)
+        intent, score = classifier.predict(dataset)
         keywords = matcher.get_keywords(preprocessed_text, intent)
+
+
 
         return await turn_context.send_activity(
             MessageFactory.text(f"""
             intent: {intent},
+            score: {score}
             keywords: {keywords}
             """)
         )

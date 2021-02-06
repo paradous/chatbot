@@ -1,6 +1,6 @@
 
 import pickle
-
+import torch.nn.functional as F
 import requests
 import torch
 from transformers import BertTokenizer, BertForSequenceClassification
@@ -81,5 +81,7 @@ class Classifier:
         # Get the predicted class index
         _, predicted_index = torch.max(probabilities[0], dim=1)
 
+        softmax = F.softmax(probabilities[0], dim=1)
+
         # Return the class name
-        return self.labels[predicted_index.data[0].item()]
+        return self.labels[predicted_index.data[0].item()] , softmax
