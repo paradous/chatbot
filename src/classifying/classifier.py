@@ -16,35 +16,41 @@ class Classifier:
 
     def __init__(self):
 
-        # Load the classes
+        # Load the classes and the model
         self.labels = self._load_labels()
-
-        # Download the model and instantiate it
-        #self._download_model()
         self.model = self._load_model()
 
     @staticmethod
-    def _load_labels() -> dict:
-        """Load the dictionary labels from a pickle file and return it."""
-
-        with open('./assets/data/labels.pickle', 'rb') as handle:
-            return pickle.load(handle)
-
-    @staticmethod
-    def _download_model():
-        """
-        Stream and download the model from a given url to the given path.
-        """
+    def __load_remote_file(url: str, local: str):
 
         # Open the URL and a local file
-        with requests.get(config.MODEL_WEIGHT_URL, stream=True) as response:
-            with open(config.MODEL_WEIGHT_LOCAL_COPY, 'wb') as handle:
+        with requests.get(url, stream=True) as response:
+            with open(local, 'wb') as handle:
 
                 # Stream the model to the local file
                 for chunk in response.iter_content(chunk_size=8192):
                     handle.write(chunk)
 
+    def _load_labels(self) -> dict:
+        """
+        Load the dictionary labels from a remote pickle file and return it.
+        """
+
+        # Download and save the pickle locally
+        self.__load_remote_file(config.MODEL_CLASSES_URL, config.MODEL_CLASSES_LOCAL_COPY)
+
+        # Load and return a dictionary
+        with open(config.MODEL_CLASSES_LOCAL_COPY, 'rb') as handle:
+            return pickle.load(handle)
+
     def _load_model(self) -> BertForSequenceClassification:
+        """
+        Load the weight of the model from a remote file (around 500 Mo),
+        instantiate and return the model.
+        """
+
+        # Download and save the weights locally
+        self.__load_remote_file(config.MODEL_WEIGHT_URL, config.MODEL_WEIGHT_LOCAL_COPY)
 
         # Instantiate the model
         model = BertForSequenceClassification.from_pretrained(

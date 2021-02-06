@@ -17,9 +17,16 @@ class Config:
     MODEL_MATCHING = "TF-IDF"  # PolyFuzz lightest model - Optimized for matching
     MODEL_CLASSIFIER = "bert-base-uncased"  # HuggingFace smallest BERT model - For tokenization and classifying
 
-    # Weights to fine-tune the classifier
-    MODEL_WEIGHT_URL = "https://static.paradous.be/file/paradous/chatbot/resa_BERT_model.pt"
-    MODEL_WEIGHT_LOCAL_COPY = "./assets/model/resa_BERT_model.pt"
+    # Remote files
+    s3_base_url = environ.get("S3_BASE_URL", ""),
 
-    # External files
+    weight_file = "resa_BERT_model.pt"
+    MODEL_WEIGHT_URL = f"{s3_base_url}/{weight_file}"  # Fine-tuned weights for BERT model
+    MODEL_WEIGHT_LOCAL_COPY = f"./assets/model/{weight_file}"
+
+    classes_file = "labels.pickle"
+    MODEL_CLASSES_URL = f"{s3_base_url}/{classes_file}"
+    MODEL_CLASSES_LOCAL_COPY = f"./assets/model/{classes_file}"
+
+    # Filters
     FILTERS_TOML = "./filters.toml"
