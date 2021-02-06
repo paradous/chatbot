@@ -1,16 +1,15 @@
 # TOML document to store filters
 
-[longtalk_hotel_reserve]
+[longtalk_make_reservation]
 
     # Size of the room: How many people ?
-    [longtalk_hotel_reserve.people]
+    [longtalk_make_reservation.people]
     words = ["pearson", "people"]
     regex = '''(?P<people>\d)\W%s'''
     threshold = 0.85
 
     # Duration of the book: How long ?
-    [longtalk_hotel_reserve.duration]
-    words = ["day"]
+    [longtalk_make_reservation.duration]
+    words = ["day", "night"]
     regex = '''(?P<duration>\d)\W%s'''
     threshold = 0.85
-

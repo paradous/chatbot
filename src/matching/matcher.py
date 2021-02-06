@@ -58,7 +58,6 @@ class Matcher:
     def get_keywords(self, text: str, intent: str) -> dict:
 
         keywords = {}
-
         if intent in self.filters:
 
             # Split the text into a list of words
