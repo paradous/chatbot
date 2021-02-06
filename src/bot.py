@@ -2,17 +2,8 @@
 from botbuilder.core import ActivityHandler, MessageFactory, TurnContext
 from botbuilder.schema import ChannelAccount
 
-from src.matching import Matcher
-from src.preprocessing import Preprocessor, Tokenizer
-from src.classifying import Classifier
-
-# Preprocessing
-preprocessor = Preprocessor()
-tokenizer = Tokenizer()
-
-# Classifier
-classifier = Classifier()
-matcher = Matcher()
+from .nlu import NLU
+nlu = NLU()
 
 
 class Bot(ActivityHandler):
@@ -25,16 +16,8 @@ class Bot(ActivityHandler):
 
     async def on_message_activity(self, turn_context: TurnContext):
 
-        # Get the message
-        message = turn_context.activity.text
-
-        # Clean the message and create a dataset of tokens
-        preprocessed_text = preprocessor.preprocess(message)
-        dataset = tokenizer.get_dataset(preprocessed_text)
-
         # Get the intention
-        intent = classifier.predict(dataset)
-        keywords = matcher.get_keywords(preprocessed_text, intent)
+        intent, keywords = nlu.get_intent(turn_context.activity.text)
 
         return await turn_context.send_activity(
             MessageFactory.text(f"""
