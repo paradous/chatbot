@@ -6,20 +6,21 @@ from http import HTTPStatus
 
 from aiohttp import web
 from aiohttp.web import Request, Response, json_response
-from botbuilder.core import BotFrameworkAdapterSettings, TurnContext, BotFrameworkAdapter
+from botbuilder.core import BotFrameworkAdapterSettings, TurnContext, BotFrameworkAdapter, ConversationState, MemoryStorage, UserState
 from botbuilder.core.integration import aiohttp_error_middleware
 from botbuilder.schema import Activity, ActivityTypes
 
+from src.dialogs import MainDialog, BookingRoomDialog
+from src.nlu import NLU
 from src import Bot
 from config import Config
 
 # Load the config and create the bot
 config = Config()
-bot = Bot()
 
 # Init a Bot adapter https://aka.ms/about-bot-adapter
 settings = BotFrameworkAdapterSettings(config.APP_ID, config.APP_PASSWORD)
-adapter = BotFrameworkAdapter(settings)
+ADAPTER = BotFrameworkAdapter(settings)
 
 
 # Catch-all for errors
@@ -51,7 +52,27 @@ async def on_error(context: TurnContext, error_: Exception):
         )
         await context.send_activity(trace_activity)
 
-adapter.on_turn_error = on_error
+        # Clear out state
+        await CONVERSATION_STATE.delete(context)
+
+
+# Set the error handler on the Adapter.
+ADAPTER.on_turn_error = on_error
+
+# Create MemoryStorage, UserState and ConversationState
+MEMORY = MemoryStorage()
+CONVERSATION_STATE = ConversationState(MEMORY)
+USER_STATE = UserState(MEMORY)
+
+# Load the NLU recognizer
+nlu = NLU()
+
+# Create the dialogs
+dialog_room_reservation = BookingRoomDialog(nlu, USER_STATE)
+dialog_main = MainDialog(nlu, USER_STATE, dialog_room_reservation)
+
+# Create the bot
+bot = Bot(CONVERSATION_STATE, USER_STATE, dialog_main)
 
 
 # Direct message API
@@ -76,7 +97,7 @@ async def messages(req: Request) -> Response:
         auth_header = req.headers["Authorization"]
 
     # Call the bot and send back its response
-    response = await adapter.process_activity(activity, auth_header, bot.on_turn)
+    response = await ADAPTER.process_activity(activity, auth_header, bot.on_turn)
     if response:
         return json_response(data=response.body, status=response.status)
 

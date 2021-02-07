@@ -6,7 +6,7 @@ import toml
 import pandas as pd
 from polyfuzz import PolyFuzz
 
-from src.matching import Filter
+from . import Filter
 from config import Config
 config = Config()
 

@@ -5,6 +5,7 @@ import requests
 import torch
 from transformers import BertTokenizer, BertForSequenceClassification
 
+from src.nlu import Intent
 from config import Config
 config = Config()
 
@@ -50,7 +51,7 @@ class Classifier:
         """
 
         # Download and save the weights locally
-        self.__load_remote_file(config.MODEL_WEIGHT_URL, config.MODEL_WEIGHT_LOCAL_COPY)
+        # self.__load_remote_file(config.MODEL_WEIGHT_URL, config.MODEL_WEIGHT_LOCAL_COPY)
 
         # Instantiate the model
         model = BertForSequenceClassification.from_pretrained(
@@ -68,7 +69,7 @@ class Classifier:
 
         return model
 
-    def predict(self, dataset: BertTokenizer):
+    def predict(self, dataset: BertTokenizer) -> Intent:
         """Make a prediction and return the class."""
 
         # Make the prediction, get an array of probabilities
@@ -81,5 +82,5 @@ class Classifier:
         # Get the predicted class index
         _, predicted_index = torch.max(probabilities[0], dim=1)
 
-        # Return the class name
-        return self.labels[predicted_index.data[0].item()]
+        # Return the intent
+        return Intent(self.labels[predicted_index[0].item()])
