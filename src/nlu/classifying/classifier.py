@@ -51,7 +51,7 @@ class Classifier:
         """
 
         # Download and save the weights locally
-        # self.__load_remote_file(config.MODEL_WEIGHT_URL, config.MODEL_WEIGHT_LOCAL_COPY)
+        self.__load_remote_file(config.MODEL_WEIGHT_URL, config.MODEL_WEIGHT_LOCAL_COPY)
 
         # Instantiate the model
         model = BertForSequenceClassification.from_pretrained(
