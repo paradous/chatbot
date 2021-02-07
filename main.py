@@ -10,7 +10,8 @@ from botbuilder.core import BotFrameworkAdapterSettings, TurnContext, BotFramewo
 from botbuilder.core.integration import aiohttp_error_middleware
 from botbuilder.schema import Activity, ActivityTypes
 
-from src.dialogs import RoomReservationDialog
+from src.dialogs import MainDialog, BookingRoomDialog
+from src.nlu import NLU
 from src import Bot
 from config import Config
 
@@ -63,9 +64,15 @@ MEMORY = MemoryStorage()
 CONVERSATION_STATE = ConversationState(MEMORY)
 USER_STATE = UserState(MEMORY)
 
-# Create main dialog and bot
-DIALOG = RoomReservationDialog(USER_STATE)
-bot = Bot(CONVERSATION_STATE, USER_STATE, DIALOG)
+# Load the NLU recognizer
+nlu = NLU()
+
+# Create the dialogs
+dialog_room_reservation = BookingRoomDialog(nlu, USER_STATE)
+dialog_main = MainDialog(nlu, USER_STATE, dialog_room_reservation)
+
+# Create the bot
+bot = Bot(CONVERSATION_STATE, USER_STATE, dialog_main)
 
 
 # Direct message API

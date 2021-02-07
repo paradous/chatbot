@@ -1,4 +1,5 @@
 
-from .room_reservation_dialog import RoomReservationDialog
+from .booking_room_dialog import BookingRoomDialog
+from .main_dialog import MainDialog
 
-__all__ = ["RoomReservationDialog"]
+__all__ = ["BookingRoomDialog", "MainDialog"]

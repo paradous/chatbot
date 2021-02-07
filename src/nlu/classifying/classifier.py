@@ -5,6 +5,7 @@ import requests
 import torch
 from transformers import BertTokenizer, BertForSequenceClassification
 
+from src.nlu import Intent
 from config import Config
 config = Config()
 
@@ -68,7 +69,7 @@ class Classifier:
 
         return model
 
-    def predict(self, dataset: BertTokenizer):
+    def predict(self, dataset: BertTokenizer) -> Intent:
         """Make a prediction and return the class."""
 
         # Make the prediction, get an array of probabilities
@@ -81,5 +82,5 @@ class Classifier:
         # Get the predicted class index
         _, predicted_index = torch.max(probabilities[0], dim=1)
 
-        # Return the class name
-        return self.labels[predicted_index.data[0].item()]
+        # Return the intent
+        return Intent(self.labels[predicted_index[0].item()])

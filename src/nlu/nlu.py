@@ -1,9 +1,8 @@
 
-from typing import Tuple
-
-from src.nlu.matching import Matcher
-from src.nlu.preprocessing import Preprocessor, Tokenizer
-from src.nlu.classifying import Classifier
+from . import Intent
+from .matching import Matcher
+from .preprocessing import Preprocessor, Tokenizer
+from .classifying import Classifier
 
 
 class NLU:
@@ -18,7 +17,7 @@ class NLU:
         self.classifier = Classifier()
         self.matcher = Matcher()
 
-    def get_intent(self, message: str) -> Tuple[str, dict]:
+    def get_intent(self, message: str) -> (Intent, dict):
         """
         Return the intention and the keywords of a given message.
         """
@@ -29,6 +28,6 @@ class NLU:
 
         # Get the intention
         intent = self.classifier.predict(dataset)
-        keywords = self.matcher.get_keywords(preprocessed_text, intent)
+        keywords = self.matcher.get_keywords(preprocessed_text, intent.value)
 
         return intent, keywords
