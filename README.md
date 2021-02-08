@@ -1,6 +1,8 @@
 # Resa Chatbot
 
-A cross-platform chatbot based on MS Bot Framework and a fine-tuned BERT model, to demonstrate how to easily create complex dialogs and deploy it on Azure. Test is on [chatbot.joffreybvn.be](https://chatbot.joffreybvn.be) !
+A cross-platform chatbot based on MS Bot Framework and a fine-tuned BERT model, to demonstrate how to easily create complex dialogs and deploy it on Azure.
+
+Test is on [chatbot.joffreybvn.be](https://chatbot.joffreybvn.be), tell him that you want to book a hotel room!
 
 ### Project timeline
 
@@ -12,11 +14,17 @@ This project was completed in 5 days by two Machine Learning students from BeCod
  - **Vincent Leurs**: [Twitter](https://twitter.com/VincentLeurs) - [Github](https://github.com/paradous)
  - **Joffrey Bienvenu**: [Website](https://joffreybvn.be/) - [Twitter](https://twitter.com/Joffreybvn) - [Github](https://github.com/joffreybvn)
 
-### Techs and libraries used
+## The dialog flow
 
-The efficient implementation of our solution relies on a plethora of solid libraries:
+<p align="center">
+    <img src="./assets/images/bot_dialogflow.svg">
+</p>
 
-#### Inputs preprocessing
+## Techs and libraries used
+
+The efficient implementation of our solution relies on the Bot Framework from Microsoft, and a plethora of solid libraries:
+
+### Inputs preprocessing
 The process of transforming and sanitizing a message in order to be able to classify it.
 
 | Library | Used for |
@@ -29,13 +37,14 @@ The process of transforming and sanitizing a message in order to be able to clas
 
 The pre-processing is done in the [Preprocessor.py](/src/nlu/preprocessing/preprocessor.py) object.
 
-#### Classification
+### Classification & matching
 The process of recognising and giving a label to a message.
 
 | Library | Used for |
 |---|---|
-| transformers | Downloading and using BERT|
+| transformers | Downloading and using BERT |
 | PyTorch | Fine-tuning the model based on our dataset  |
+| PolyFuzz | With regex, to detect keywords and complex intentions  |
 
 ## Cross-plateforme implementation
 
