@@ -14,7 +14,7 @@ This project was completed in 5 days by two Machine Learning students from BeCod
  - **Vincent Leurs**: [Twitter](https://twitter.com/VincentLeurs) - [Github](https://github.com/paradous)
  - **Joffrey Bienvenu**: [Website](https://joffreybvn.be/) - [Twitter](https://twitter.com/Joffreybvn) - [Github](https://github.com/joffreybvn)
 
-## The dialog flow
+### The dialog flow
 
 <p align="center">
     <img src="./assets/images/bot_dialogflow.svg">
@@ -24,7 +24,7 @@ The process of transforming and sanitizing a message in order to be able to clas
 The process of recognising and giving a label to a message.
 ### Techs and libraries used
 
-The efficient implementation of our solution relies on the Bot Framework from Microsoft, and a plethora of solid libraries:
+The efficient implementation of our solution relies on a plethora of solid libraries:
 
 | Library | Used in |  Detail |
 |---|---|---|
@@ -37,6 +37,14 @@ The efficient implementation of our solution relies on the Bot Framework from Mi
 | transformers | [Classifier.py](/src/nlu/classifying/classifier.py) | Downloading and using BERT |
 | PyTorch | [Classifier.py](/src/nlu/classifying/classifier.py) | Fine-tuning the model based on our dataset  |
 | PolyFuzz | [Classifier.py](/src/nlu/classifying/classifier.py) | With regex, to detect keywords and complex intentions  |
+
+### This bot is cross-platform
+
+All these libraries have been brought together with Microsoft's Bot Framework, a tool that allows us to publish this bot on all the following platforms:
+
+<p align="center">
+    <img src="./assets/images/cross_platform.svg">
+</p>
 
 ## Cross-plateforme implementation
 
