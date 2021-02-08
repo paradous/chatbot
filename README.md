@@ -42,6 +42,11 @@ All these libraries have been brought together with Microsoft's Bot Framework, a
     <img src="./assets/images/cross_platform.svg">
 </p>
 
+As of today, the bot is available on:
+- Skype: [@demo_rasa_bot]()
+- Telegram: [@demo_rasa_bot]()
+- Webpage: [chatbot.joffreybvn.be](https://chatbot.joffreybvn.be)
+
 ### Project timeline
 
 <p align="center">
