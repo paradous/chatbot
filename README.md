@@ -1,18 +1,8 @@
-# Resa Chatbot
+![Resa chatbot](/assets/images/chatbo_header.svg)
 
 A cross-platform chatbot based on MS Bot Framework, PyTorch and a fine-tuned BERT model, to demonstrate how to easily create complex dialogs and deploy it on Azure.
 
 Test is on [chatbot.joffreybvn.be](https://chatbot.joffreybvn.be), **tell him that you want to book a hotel room**!
-
-### Project timeline
-
-<p align="center">
-    <img src="./assets/images/project_timeline.svg">
-</p>
-
-This project was completed in 5 days by two Machine Learning students from BeCode:
- - **Vincent Leurs**: [Twitter](https://twitter.com/VincentLeurs) - [Github](https://github.com/paradous)
- - **Joffrey Bienvenu**: [Website](https://joffreybvn.be/) - [Twitter](https://twitter.com/Joffreybvn) - [Github](https://github.com/joffreybvn)
 
 ### Bot features
 - Advanced NLU (thanks to BERT) to understand custom intentions
@@ -51,3 +41,13 @@ All these libraries have been brought together with Microsoft's Bot Framework, a
 <p align="center">
     <img src="./assets/images/cross_platform.svg">
 </p>
+
+### Project timeline
+
+<p align="center">
+    <img src="./assets/images/project_timeline.svg">
+</p>
+
+This project was completed in 5 days by two Machine Learning students from BeCode:
+ - **Vincent Leurs**: [Twitter](https://twitter.com/VincentLeurs) - [Github](https://github.com/paradous)
+ - **Joffrey Bienvenu**: [Website](https://joffreybvn.be/) - [Twitter](https://twitter.com/Joffreybvn) - [Github](https://github.com/joffreybvn)
