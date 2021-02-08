@@ -8,7 +8,7 @@ Test is on [chatbot.joffreybvn.be](https://chatbot.joffreybvn.be), **tell him th
 - Advanced NLU (thanks to BERT) to understand custom intentions
 - Strong entity and keywords matcher, to detect complex informations  
 - Flexible dialogs flow that adapt to user's responses
-- Easy-to-interact on any platform, thanks to cards, button and more
+- Easy-to-interact on any platform, thanks to cards, buttons and more
 
 ### The dialog flow
 
