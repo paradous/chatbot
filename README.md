@@ -20,31 +20,23 @@ This project was completed in 5 days by two Machine Learning students from BeCod
     <img src="./assets/images/bot_dialogflow.svg">
 </p>
 
-## Techs and libraries used
+The process of transforming and sanitizing a message in order to be able to classify it.
+The process of recognising and giving a label to a message.
+### Techs and libraries used
 
 The efficient implementation of our solution relies on the Bot Framework from Microsoft, and a plethora of solid libraries:
 
-### Inputs preprocessing
-The process of transforming and sanitizing a message in order to be able to classify it.
-
-| Library | Used for |
-|---|---|
-| BeautifulSoup | Preventing and removing tags and other HTML elements |
-| Unidecode | Removing all accents  |
-| SpaCy | Lemmatize and detect numbers written in letters  |
-| word2number | Replace the numbers written in letters, into digits |
-| contractions | Detecting and replacing contracted forms of language |
-
-The pre-processing is done in the [Preprocessor.py](/src/nlu/preprocessing/preprocessor.py) object.
-
-### Classification & matching
-The process of recognising and giving a label to a message.
-
-| Library | Used for |
-|---|---|
-| transformers | Downloading and using BERT |
-| PyTorch | Fine-tuning the model based on our dataset  |
-| PolyFuzz | With regex, to detect keywords and complex intentions  |
+| Library | Used in |  Detail |
+|---|---|---|
+| BeautifulSoup | [Preprocessor.py](/src/nlu/preprocessing/preprocessor.py) | Preventing and removing tags and other HTML elements |
+| Unidecode | [Preprocessor.py](/src/nlu/preprocessing/preprocessor.py) | Removing all accents  |
+| SpaCy | [Preprocessor.py](/src/nlu/preprocessing/preprocessor.py) | Lemmatize and detect numbers written in letters  |
+| word2number | [Preprocessor.py](/src/nlu/preprocessing/preprocessor.py) | Replace the numbers written in letters, into digits |
+| contractions | [Preprocessor.py](/src/nlu/preprocessing/preprocessor.py) | Detecting and replacing contracted forms of language |
+|  |  |  |
+| transformers | [Classifier.py](/src/nlu/classifying/classifier.py) | Downloading and using BERT |
+| PyTorch | [Classifier.py](/src/nlu/classifying/classifier.py) | Fine-tuning the model based on our dataset  |
+| PolyFuzz | [Classifier.py](/src/nlu/classifying/classifier.py) | With regex, to detect keywords and complex intentions  |
 
 ## Cross-plateforme implementation
 
