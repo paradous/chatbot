@@ -1,6 +1,20 @@
-# chatbot
+# Resa Chatbot
 
+A cross-platform chatbot based on MS Bot Framework and a fine-tuned BERT model, to demonstrate how to easily create complex dialogs and deploy it on Azure. Test is on [chatbot.joffreybvn.be](https://chatbot.joffreybvn.be) !
 
+### Project timeline
+
+<p align="center">
+    <img src="./assets/images/project_timeline.svg">
+</p>
+
+This project was completed in 5 days by two Machine Learning students from BeCode:
+ - **Vincent Leurs**: [Twitter](https://twitter.com/VincentLeurs) - [Github](https://github.com/paradous)
+ - **Joffrey Bienvenu**: [Website](https://joffreybvn.be/) - [Twitter](https://twitter.com/Joffreybvn) - [Github](https://github.com/joffreybvn)
+
+### Techs and libraries used
+
+The efficient implementation of our solution relies on a plethora of solid libraries:
 
 
 
