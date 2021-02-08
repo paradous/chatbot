@@ -1,4 +1,4 @@
-![Resa chatbot](/assets/images/chatbo_header.svg)
+![Resa chatbot](/assets/images/chatbot_header.svg)
 
 A cross-platform chatbot based on MS Bot Framework, PyTorch and a fine-tuned BERT model, to demonstrate how to easily create complex dialogs and deploy it on Azure.
 
