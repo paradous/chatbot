@@ -19,7 +19,7 @@ The efficient implementation of our solution relies on a plethora of solid libra
 #### Inputs preprocessing
 The process of transforming and sanitizing a message in order to be able to classify it.
 
-| &nbsp; &nbsp; Library &nbsp; &nbsp; | Used for |
+| Library | Used for |
 |---|---|
 | BeautifulSoup | Preventing and removing tags and other HTML elements |
 | Unidecode | Removing all accents  |
@@ -32,7 +32,7 @@ The pre-processing is done in the [Preprocessor.py](/src/nlu/preprocessing/prepr
 #### Classification
 The process of recognising and giving a label to a message.
 
-| &nbsp; &nbsp; Library &nbsp; &nbsp;| Used for |
+| Library | Used for |
 |---|---|
 | transformers | Downloading and using BERT|
 | PyTorch | Fine-tuning the model based on our dataset  |
