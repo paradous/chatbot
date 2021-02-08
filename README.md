@@ -16,7 +16,17 @@ This project was completed in 5 days by two Machine Learning students from BeCod
 
 The efficient implementation of our solution relies on a plethora of solid libraries:
 
+#### Inputs preprocessing
 
+| Library | Used for |
+|---|---|
+| BeautifulSoup | Preventing and removing tags and other HTML elements |
+| Unidecode | Removing all accents  |
+| SpaCy | Lemmatize and detect numbers written in letters  |
+| word2number | Replace the numbers written in letters, into digits |
+| contractions | Detecting and replacing contracted forms of language |
+
+The pre-processing is done in the [Preprocessor.py](/src/nlu/preprocessing/preprocessor.py) object.
 
 ## Cross-plateforme implementation
 
